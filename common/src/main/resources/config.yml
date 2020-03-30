@@ -1,0 +1,17 @@
+database:
+  type: "SQLite"
+  db-name: "userapi"
+  address: "localhost:3306"
+  username: ""
+  password: ""
+  table-prefix: "userapi_"
+
+migration-mode: false
+
+enable-listener: true
+
+first-login-msg: "&6* %name% が初めてログインしました!"
+
+rename:
+  notification-msg: "&7* &b%name%&7 の昔の名前: &b%previous%"
+  notice-period: 30

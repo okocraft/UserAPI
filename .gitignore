@@ -1,0 +1,9 @@
+.idea/
+_old/
+api/target/
+bukkit/target/
+bungee/target/
+common/target/
+UserAPI.iml
+bukkit/dependency-reduced-pom.xml
+bungee/dependency-reduced-pom.xml

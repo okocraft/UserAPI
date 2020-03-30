@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>net.okocraft.userapi</groupId>
+    <artifactId>userapi</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0</version>
+
+    <modules>
+        <module>api</module>
+        <module>common</module>
+        <module>bukkit</module>
+        <module>bungee</module>
+    </modules>
+
+    <name>UserAPI</name>
+    <url>https://github.com/okocraft/UserAPI</url>
+
+    <licenses>
+        <license>
+            <name>GNU General Public License, Version 3.0</name>
+            <url>https://www.gnu.org/licenses/gpl-3.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/okocraft/UserAPI/issues</url>
+    </issueManagement>
+
+    <properties>
+        <project.charset>UTF-8</project.charset>
+        <java.version>11</java.version>
+        <project.build.sourceEncoding>${project.charset}</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>${project.charset}</project.reporting.outputEncoding>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>bintray-siroplugins-maven-repo</id>
+            <url>https://siroplugins.bintray.com/maven-repo</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.siroshun09</groupId>
+            <artifactId>sirolibrary</artifactId>
+            <version>1.7.1</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+</project>
