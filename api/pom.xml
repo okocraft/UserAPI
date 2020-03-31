@@ -5,20 +5,12 @@
     <parent>
         <artifactId>userapi</artifactId>
         <groupId>net.okocraft.userapi</groupId>
-        <version>1.0</version>
+        <version>1.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>api</artifactId>
     <name>API</name>
-
-    <distributionManagement>
-        <repository>
-            <id>bintray-okocraft-maven-repo</id>
-            <name>okocraft-maven-repo</name>
-            <url>https://api.bintray.com/maven/okocraft/maven-repo/UserAPI/;publish=1</url>
-        </repository>
-    </distributionManagement>
 
     <build>
         <plugins>
