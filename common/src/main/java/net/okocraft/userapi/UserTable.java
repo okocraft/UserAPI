@@ -226,14 +226,14 @@ public class UserTable implements UserDataGetter {
         st.setString(1, name);
 
         ResultSet result = st.executeQuery();
+        c.close();
         while (result.next()) {
             String strUuid = result.getString("uuid");
-            if (strUuid.equalsIgnoreCase(uuid.toString())) {
-                continue;
+            if (!strUuid.equalsIgnoreCase(uuid.toString())) {
+                replaceToEmptyName(strUuid, name);
             }
-            replaceToEmptyName(strUuid, name);
         }
-        close(c, st);
+        st.close();
     }
 
     private void replaceToEmptyName(@NotNull String uuid, @NotNull String previousName) throws SQLException {

@@ -4,6 +4,6 @@ api/target/
 bukkit/target/
 bungee/target/
 common/target/
-UserAPI.iml
+*.iml
 bukkit/dependency-reduced-pom.xml
 bungee/dependency-reduced-pom.xml

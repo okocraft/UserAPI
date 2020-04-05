@@ -1,6 +1,5 @@
 package net.okocraft.userapi.bungee;
 
-import com.github.siroshun09.sirolibrary.message.BukkitMessage;
 import com.github.siroshun09.sirolibrary.message.BungeeMessage;
 import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.plugin.Listener;
@@ -49,7 +48,7 @@ public class PlayerJoinListener implements Listener {
         try {
             RenameData data = table.getRenameData(uuid);
             if (isInNoticePeriod(data.getRenamedDate(), config.getNoticePeriod())) {
-                BukkitMessage.broadcastWithColor(config.getNotificationMsg(data));
+                BungeeMessage.broadcastWithColor(config.getNotificationMsg(data));
             }
         } catch (SQLException ex) {
             UserAPIPlugin.get().getLogger().severe("Exception occurred while executing SQL.");
