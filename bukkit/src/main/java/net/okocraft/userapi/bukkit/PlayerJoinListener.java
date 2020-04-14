@@ -12,8 +12,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.SQLException;
-import java.time.Duration;
-import java.time.Instant;
 import java.util.UUID;
 
 public class PlayerJoinListener implements Listener {
@@ -60,6 +58,6 @@ public class PlayerJoinListener implements Listener {
     }
 
     private boolean isInNoticePeriod(long renamedDate, long period) {
-        return Duration.between(Instant.ofEpochMilli(renamedDate), Instant.now()).toDays() <= period;
+        return System.currentTimeMillis() - renamedDate <= period * 86400000;
     }
 }

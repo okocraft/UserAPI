@@ -180,13 +180,13 @@ public class UserTable implements UserDataGetter {
 
         ResultSet result = st.executeQuery();
         if (!result.next()) {
-            saveNewPlayer(uuid, name);
             close(c, st, result);
+            saveNewPlayer(uuid, name);
             return CheckResult.FIRST_LOGIN;
         } else {
             if (!result.getString("name").equals(name)) {
-                rename(uuid, name);
                 close(c, st, result);
+                rename(uuid, name);
                 return CheckResult.RENAMED;
             }
         }
@@ -226,14 +226,14 @@ public class UserTable implements UserDataGetter {
         st.setString(1, name);
 
         ResultSet result = st.executeQuery();
-        c.close();
+        close(c, st);
         while (result.next()) {
             String strUuid = result.getString("uuid");
             if (!strUuid.equalsIgnoreCase(uuid.toString())) {
                 replaceToEmptyName(strUuid, name);
             }
         }
-        st.close();
+        result.close();
     }
 
     private void replaceToEmptyName(@NotNull String uuid, @NotNull String previousName) throws SQLException {
