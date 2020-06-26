@@ -1,17 +1,16 @@
 package net.okocraft.userapi;
 
-import com.github.siroshun09.sirolibrary.config.Yaml;
-import com.github.siroshun09.sirolibrary.database.Database;
-import com.github.siroshun09.sirolibrary.database.DatabaseType;
-import com.github.siroshun09.sirolibrary.database.MySQL;
-import com.github.siroshun09.sirolibrary.database.SQLite;
-import com.github.siroshun09.sirolibrary.file.FileUtil;
+import com.github.siroshun09.configapi.common.Yaml;
+import com.github.siroshun09.databaselibs.common.database.Database;
+import com.github.siroshun09.databaselibs.common.database.MySQL;
+import com.github.siroshun09.databaselibs.common.database.SQLite;
 import net.okocraft.userapi.api.UserAPI;
 import net.okocraft.userapi.api.data.RenameData;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
@@ -84,7 +83,7 @@ public class UserAPIPlugin {
         table = new UserTable(database);
         UserAPI.setUserDataGetter(table);
 
-        if (database.getDatabaseType().equals(DatabaseType.MYSQL) && config.isMigrationMode()) {
+        if (database.getType().equals(Database.Type.MYSQL) && config.isMigrationMode()) {
             try {
                 migrate();
             } catch (SQLException e) {
@@ -97,7 +96,7 @@ public class UserAPIPlugin {
 
     private void migrate() throws SQLException {
         getLogger().info("Start migrating from SQLite to MySQL...");
-        Database sqlite = createDatabase(DatabaseType.SQLITE);
+        Database sqlite = createDatabase(Database.Type.SQLITE);
         sqlite.start();
         Set<RenameData> dataSet = new UserTable(sqlite).getAllRenameData();
         sqlite.shutdown();
@@ -111,7 +110,7 @@ public class UserAPIPlugin {
 
     @NotNull
     @Contract("_ -> new")
-    private Database createDatabase(@NotNull DatabaseType type) {
+    private Database createDatabase(@NotNull Database.Type type) {
         switch (type) {
             case MYSQL:
                 getLogger().info("We use MySQL...");
@@ -124,7 +123,8 @@ public class UserAPIPlugin {
                 getLogger().info("We use SQLite...");
                 Path path = Paths.get("./plugins/UserAPI/data.db");
                 try {
-                    FileUtil.createDirAndFile(path);
+                    Files.createDirectories(path.getParent());
+                    Files.createFile(path);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

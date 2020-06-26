@@ -1,6 +1,6 @@
 package net.okocraft.userapi;
 
-import com.github.siroshun09.sirolibrary.database.Database;
+import com.github.siroshun09.databaselibs.common.database.Database;
 import net.okocraft.userapi.api.UserDataGetter;
 import net.okocraft.userapi.api.data.RenameData;
 import net.okocraft.userapi.api.data.UserData;
