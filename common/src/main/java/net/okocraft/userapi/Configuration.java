@@ -1,7 +1,7 @@
 package net.okocraft.userapi;
 
-import com.github.siroshun09.sirolibrary.config.Yaml;
-import com.github.siroshun09.sirolibrary.database.DatabaseType;
+import com.github.siroshun09.configapi.common.Yaml;
+import com.github.siroshun09.databaselibs.common.database.Database;
 import net.okocraft.userapi.api.data.RenameData;
 import org.jetbrains.annotations.NotNull;
 
@@ -17,13 +17,13 @@ public class Configuration {
         return yaml;
     }
 
-    public DatabaseType getDatabaseType() {
+    public Database.Type getDatabaseType() {
         String type = yaml.getString("database.type", "SQLite");
         try {
-            return DatabaseType.valueOf(type.toUpperCase());
+            return Database.Type.valueOf(type.toUpperCase());
         } catch (IllegalArgumentException e) {
             UserAPIPlugin.get().getLogger().warning("Invalid database type: " + type);
-            return DatabaseType.SQLITE;
+            return Database.Type.SQLITE;
         }
     }
 
