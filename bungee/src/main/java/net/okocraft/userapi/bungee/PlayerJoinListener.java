@@ -1,6 +1,8 @@
 package net.okocraft.userapi.bungee;
 
-import com.github.siroshun09.sirolibrary.message.BungeeMessage;
+import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
@@ -35,7 +37,7 @@ public class PlayerJoinListener implements Listener {
             String name = e.getPlayer().getName();
             CheckResult result = table.checkUser(uuid, name);
             if (result.equals(CheckResult.FIRST_LOGIN)) {
-                BungeeMessage.broadcastWithColor(config.getFirstLoginMsg(name));
+                broadcast(config.getFirstLoginMsg(name));
             }
         } catch (SQLException ex) {
             UserAPIPlugin.get().getLogger().severe("Exception occurred while executing SQL.");
@@ -46,7 +48,7 @@ public class PlayerJoinListener implements Listener {
         try {
             RenameData data = table.getRenameData(uuid);
             if (isInNoticePeriod(data.getRenamedDate(), config.getNoticePeriod())) {
-                BungeeMessage.broadcastWithColor(config.getNotificationMsg(data));
+                broadcast(config.getNotificationMsg(data));
             }
         } catch (SQLException ex) {
             UserAPIPlugin.get().getLogger().severe("Exception occurred while executing SQL.");
@@ -56,5 +58,10 @@ public class PlayerJoinListener implements Listener {
 
     private boolean isInNoticePeriod(long renamedDate, long period) {
         return System.currentTimeMillis() - renamedDate <= period * 86400000;
+    }
+
+    private void broadcast(String message) {
+        message = ChatColor.translateAlternateColorCodes('&', message);
+        ProxyServer.getInstance().broadcast(TextComponent.fromLegacyText(message));
     }
 }
