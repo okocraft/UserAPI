@@ -6,8 +6,7 @@
 ## Requirements
 
 - Java 11+
-- Spigot (Minecraft Version 1.15+)
-- [SiroLibrary](https://github.com/SiroPlugins/SiroLibrary) 1.7.1+
+- Spigot (Minecraft Version 1.15+) or BungeeCord
 
 ## Usage (Maven)
 
