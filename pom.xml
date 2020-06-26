@@ -21,9 +21,9 @@
 
     <distributionManagement>
         <repository>
-            <id>bintray-siroplugins-maven-repo</id>
-            <name>siroplugins-maven-repo</name>
-            <url>https://api.bintray.com/maven/siroplugins/maven-repo/DailyRewards/;publish=1</url>
+            <id>bintray-okocraft-maven-repo</id>
+            <name>okocraft-maven-repo</name>
+            <url>https://api.bintray.com/maven/okocraft/maven-repo/UserAPI/;publish=1</url>
         </repository>
     </distributionManagement>
 
