@@ -1,10 +1,11 @@
 package net.okocraft.userapi.bukkit;
 
-import com.github.siroshun09.sirolibrary.message.BukkitMessage;
 import net.okocraft.userapi.CheckResult;
 import net.okocraft.userapi.Configuration;
 import net.okocraft.userapi.UserAPIPlugin;
 import net.okocraft.userapi.api.data.RenameData;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
@@ -33,7 +34,7 @@ public class PlayerJoinListener implements Listener {
 
             CheckResult result = UserAPIPlugin.get().getTable().checkUser(uuid, name);
             if (result.equals(CheckResult.FIRST_LOGIN)) {
-                BukkitMessage.broadcastWithColor(UserAPIPlugin.get().getConfig().getFirstLoginMsg(name));
+                broadcast(UserAPIPlugin.get().getConfig().getFirstLoginMsg(name));
             }
         } catch (SQLException ex) {
             UserAPIPlugin.get().getLogger().severe("Exception occurred while executing SQL.");
@@ -49,7 +50,7 @@ public class PlayerJoinListener implements Listener {
         try {
             RenameData data = UserAPIPlugin.get().getTable().getRenameData(uuid);
             if (isInNoticePeriod(data.getRenamedDate(), config.getNoticePeriod())) {
-                BukkitMessage.broadcastWithColor(config.getNotificationMsg(data));
+                broadcast(config.getNotificationMsg(data));
             }
         } catch (SQLException ex) {
             UserAPIPlugin.get().getLogger().severe("Exception occurred while executing SQL.");
@@ -59,5 +60,10 @@ public class PlayerJoinListener implements Listener {
 
     private boolean isInNoticePeriod(long renamedDate, long period) {
         return System.currentTimeMillis() - renamedDate <= period * 86400000;
+    }
+
+    private void broadcast(String message) {
+        String colored = ChatColor.translateAlternateColorCodes('&', message);
+        Bukkit.getOnlinePlayers().forEach(p -> p.sendMessage(colored));
     }
 }
