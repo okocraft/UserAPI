@@ -14,60 +14,7 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <target>${java.version}</target>
-                    <source>${java.version}</source>
-                    <encoding>UTF-8</encoding>
-                    <useIncrementalCompilation>false</useIncrementalCompilation>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.1.2</version>
-                <configuration>
-                    <finalName>UserAPI-${project.name}-${project.version}</finalName>
-                    <archive>
-                        <manifest>
-                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.1.1</version>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                        <phase>deploy</phase>
-                    </execution>
-                </executions>
-                <configuration>
-                    <author>true</author>
-                    <encoding>${project.charset}</encoding>
-                    <charset>${project.charset}</charset>
-                    <docencoding>${project.charset}</docencoding>
-                    <destDir>../docs</destDir>
-                    <notimestamp>true</notimestamp>
-                    <doctitle>UserAPI</doctitle>
-                    <bottom>
-                        <![CDATA[<p class="legalCopy">Copyright &#169; 2019-2020 <a href="https://github.com/Siroshun09">Siroshun09</a>. All rights reserved.</p>]]></bottom>
-                    <links>
-                        <link>https://docs.oracle.com/javase/jp/13/docs/api/</link>
-                        <link>https://javadoc.io/doc/org.jetbrains/annotations/18.0.0/</link>
-                    </links>
-                </configuration>
-            </plugin>
+
         </plugins>
     </build>
 </project>
