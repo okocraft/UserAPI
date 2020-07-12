@@ -7,6 +7,7 @@ database:
   table-prefix: "userapi_"
 
 migration-mode: false
+migration-from: "SQLite"
 
 enable-listener: true
 
