@@ -93,16 +93,21 @@ public class UserAPIPlugin {
     }
 
     private void migrate() throws SQLException {
-        getLogger().info("Start migrating from SQLite to MySQL...");
-        Database sqlite = createDatabase(Database.Type.SQLITE);
-        sqlite.start();
-        Set<RenameData> dataSet = new UserTable(sqlite).getAllRenameData();
-        sqlite.shutdown();
+        Database fromDB = createDatabase(config.getMigrationFrom());
+
+        getLogger().info("Start to migrate from " + fromDB.getType() + " to " + database.getType() + "...");
+
+        fromDB.start();
+
+        Set<RenameData> dataSet = new UserTable(fromDB).getAllRenameData();
+
+        fromDB.shutdown();
 
         for (RenameData data : dataSet) {
             table.migrate(data);
             getLogger().info("Migrated: " + data.getUuid() + " (" + data.getName() + ")");
         }
+
         getLogger().info("Migration completed.");
     }
 
