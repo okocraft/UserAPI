@@ -2,15 +2,13 @@ package net.okocraft.userapi;
 
 import com.github.siroshun09.configapi.common.Yaml;
 import com.github.siroshun09.databaselibs.common.database.Database;
+import com.github.siroshun09.databaselibs.common.database.DatabaseBuilder;
 import com.github.siroshun09.databaselibs.common.database.MySQL;
-import com.github.siroshun09.databaselibs.common.database.SQLite;
 import net.okocraft.userapi.api.UserAPI;
 import net.okocraft.userapi.api.data.RenameData;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
@@ -111,24 +109,16 @@ public class UserAPIPlugin {
     @NotNull
     @Contract("_ -> new")
     private Database createDatabase(@NotNull Database.Type type) {
-        switch (type) {
-            case MYSQL:
-                getLogger().info("We use MySQL...");
-                return new MySQL("UserAPI-Database",
-                        config.getJdbcUrl(),
-                        config.getYaml().getString("database.username", ""),
-                        config.getYaml().getString("database.password", ""));
-            case SQLITE:
-            default:
-                getLogger().info("We use SQLite...");
-                Path path = Paths.get("./plugins/UserAPI/data.db");
-                try {
-                    Files.createDirectories(path.getParent());
-                    Files.createFile(path);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return new SQLite("UserAPI-Database", path);
+        getLogger().info("We use " + type.toString() + "...");
+
+        if (type == Database.Type.MYSQL) {
+            return new MySQL("UserAPI-Database",
+                    config.getJdbcUrl(),
+                    config.getYaml().getString("database.username", ""),
+                    config.getYaml().getString("database.password", ""));
+        } else {
+            Path path = Paths.get("./plugins/UserAPI/data.db");
+            return DatabaseBuilder.buildFileDB(path, "UserAPI-Database", type);
         }
     }
 }
