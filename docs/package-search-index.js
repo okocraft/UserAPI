@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"net.okocraft.userapi.api"},{"l":"net.okocraft.userapi.api.data"},{"l":"すべてのパッケージ","url":"allpackages-index.html"}]
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"net.okocraft.userapi.api"},{"l":"net.okocraft.userapi.api.data"}]
