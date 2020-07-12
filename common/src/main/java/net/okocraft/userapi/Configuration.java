@@ -42,6 +42,16 @@ public class Configuration {
         return yaml.getBoolean("migration-mode", false);
     }
 
+    public Database.Type getMigrationFrom() {
+        String type = yaml.getString("migration-from", "SQLite");
+        try {
+            return Database.Type.valueOf(type.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            UserAPIPlugin.get().getLogger().warning("Invalid database type: " + type);
+            return Database.Type.SQLITE;
+        }
+    }
+
     public boolean isListenerEnabled() {
         return yaml.getBoolean("enable-listener", true);
     }
