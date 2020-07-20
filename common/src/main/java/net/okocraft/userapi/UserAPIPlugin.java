@@ -1,9 +1,9 @@
 package net.okocraft.userapi;
 
 import com.github.siroshun09.configapi.common.Yaml;
-import com.github.siroshun09.databaselibs.common.database.Database;
-import com.github.siroshun09.databaselibs.common.database.DatabaseBuilder;
-import com.github.siroshun09.databaselibs.common.database.MySQL;
+import com.github.siroshun09.databaselibs.database.Database;
+import com.github.siroshun09.databaselibs.database.DatabaseBuilder;
+import com.github.siroshun09.databaselibs.database.MySQL;
 import net.okocraft.userapi.api.UserAPI;
 import net.okocraft.userapi.api.data.RenameData;
 import org.jetbrains.annotations.Contract;

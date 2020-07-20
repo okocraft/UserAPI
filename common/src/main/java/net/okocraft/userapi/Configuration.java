@@ -1,7 +1,7 @@
 package net.okocraft.userapi;
 
 import com.github.siroshun09.configapi.common.Yaml;
-import com.github.siroshun09.databaselibs.common.database.Database;
+import com.github.siroshun09.databaselibs.database.Database;
 import net.okocraft.userapi.api.data.RenameData;
 import org.jetbrains.annotations.NotNull;
 
