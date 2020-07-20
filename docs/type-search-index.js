@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"net.okocraft.userapi.api.data","l":"RenameData"},{"p":"net.okocraft.userapi.api","l":"UserAPI"},{"p":"net.okocraft.userapi.api.data","l":"UserData"},{"p":"net.okocraft.userapi.api","l":"UserDataGetter"}]
+typeSearchIndex = [{"p":"net.okocraft.userapi.api.data","l":"RenameData"},{"p":"net.okocraft.userapi.api","l":"UserAPI"},{"p":"net.okocraft.userapi.api.data","l":"UserData"},{"p":"net.okocraft.userapi.api","l":"UserDataGetter"},{"l":"すべてのクラス","url":"allclasses-index.html"}]
