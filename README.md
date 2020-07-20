@@ -22,7 +22,7 @@ Javadoc は上のバッジから閲覧できます。
         <dependency>
             <groupId>net.okocraft.userapi</groupId>
             <artifactId>api</artifactId>
-            <version>VERSION</version>
+            <version>3.1</version>
             <scope>provided</scope>
         </dependency>
 ```
