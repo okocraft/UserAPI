@@ -11,10 +11,4 @@
 
     <artifactId>api</artifactId>
     <name>API</name>
-
-    <build>
-        <plugins>
-
-        </plugins>
-    </build>
 </project>
